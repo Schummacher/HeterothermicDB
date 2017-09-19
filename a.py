@@ -9,11 +9,15 @@ def db_read():
 def find():
     os.system("sbcl --script find.lisp")
 
+def change():
+    os.system("file_change.exe")
+
 def select_form():
     print()
     print("1: Insert")
     print("2: Read")
     print("3: Find")
+    print("4: Change")
     print("q: Quit")
 
 def sel():
@@ -24,6 +28,8 @@ def sel():
         db_read()
     elif i == '3':
         find()
+    elif i == "4":
+        change()
     elif i == 'q':
         return
     print()
