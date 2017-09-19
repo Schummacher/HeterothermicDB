@@ -33,6 +33,42 @@ class Program
                 Console.WriteLine(file_data_in[i]);
             }
         }
+
+        public string Data_com()
+        {
+            char[] initial = file_data_in.ToCharArray();
+            string result = "(";
+            int i = 0;
+            const char none = ' ';
+
+            while(i < initial.Length)
+            {
+                int j = 0;
+                result += "(";
+                while(j < 2)
+                {
+                    if(initial[i] == none)
+                    {
+                        if (j == 0)
+                        {
+                            result += " ";
+                        }                        
+                        j++;
+                        i++;
+                    }
+                    else
+                    {
+                        result += initial[i];
+                        i++;
+                    }
+                }
+                result += ")";
+                if (i != initial.Length)
+                    result += " ";
+            }
+            result += ")";
+            return result;
+        }
     }
 
     static void Main(string[] args)
@@ -41,5 +77,15 @@ class Program
         s.Read_file("a.txt");
         s.Print_file("in");
         s.Print_file("out");
+
+        string test = "sad";
+        char[] ass = test.ToCharArray();
+        Console.WriteLine(ass);
+        for (int i = 0; i < ass.Length; i++)
+        {
+            Console.Write(ass[i] + "\n");
+        }
+        Console.WriteLine(s.Data_com());
     }
 }
+
