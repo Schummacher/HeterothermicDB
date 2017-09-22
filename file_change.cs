@@ -26,6 +26,11 @@ class Program
                 Console.WriteLine(file_data_out);
         }
 
+        public void Write_file(string data)
+        {
+            File.WriteAllText("b.txt", data);
+        }
+
         public void Ccc()
         {
             for(int i = 0; i < file_data_in.Length; i++)
@@ -45,11 +50,11 @@ class Program
             {
                 int j = 0;
                 result += "(";
-                while(j < 2)
+                while(j < 8)
                 {
                     if(initial[i] == none)
                     {
-                        if (j == 0)
+                        if (j < 7)
                         {
                             result += " ";
                         }                        
@@ -75,17 +80,6 @@ class Program
     {
         ChangeFile s = new ChangeFile();
         s.Read_file("a.txt");
-        s.Print_file("in");
-        s.Print_file("out");
-
-        string test = "sad";
-        char[] ass = test.ToCharArray();
-        Console.WriteLine(ass);
-        for (int i = 0; i < ass.Length; i++)
-        {
-            Console.Write(ass[i] + "\n");
-        }
-        Console.WriteLine(s.Data_com());
+        s.Write_file(s.Data_com());
     }
 }
-

@@ -63,18 +63,7 @@ Module Module1
     Sub Main()
         Dim s As ChangeFile = New ChangeFile
         s.Read_file("a.txt")
-        s.Print_file("in")
-        s.Print_file("out")
-
-        Dim test As String = "fds"
-        Dim ass() As Char = test.ToCharArray()
-        For i As Integer = 0 To ass.Length - 1
-            Console.Write(ass(i) + vbTab)
-        Next
-        Console.Write(vbCrLf)
-
         s.Write_file(s.Data_com())
     End Sub
 
 End Module
-
