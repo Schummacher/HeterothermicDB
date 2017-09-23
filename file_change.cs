@@ -10,81 +10,58 @@ class Program
     class HeterothermicDB
     {
         private string file_data_in;
-        private string file_data_out;
 
         public string input_name;
         public string output_name;
 
-        public void Read_file(string io)
+        public void Read_file() => file_data_in = File.ReadAllText(input_name);
+        public void Write_file(string data) => File.WriteAllText("b.txt", data);
+        public void Print_file() => Console.WriteLine(file_data_in);
+
+        public string Data_com
         {
-            if (string.Equals(io, "in"))
+            get
             {
-                file_data_in = File.ReadAllText(input_name);
-                file_data_out = file_data_in;
-            }
-            else
-            {
-                file_data_in = File.ReadAllText(output_name);
-                file_data_out = file_data_in;
-            }
-        }
+                char[] initial = file_data_in.ToCharArray();
+                string result = "(";
+                int i = 0;
 
-        public void Print_file(string io)
-        {
-            if (string.Equals(io, "in"))
-                Console.WriteLine(file_data_in);
-            else if (string.Equals(io, "out"))
-                Console.WriteLine(file_data_out);
-        }
-
-        public void Write_file(string data)
-        {
-            File.WriteAllText("b.txt", data);
-        }
-
-        public string Data_com()
-        {
-            char[] initial = file_data_in.ToCharArray();
-            string result = "(";
-            int i = 0;
-            const char none = ' ';
-
-            while(i < initial.Length)
-            {
-                int j = 0;
-                result += "(";
-                while(j < 8)
+                while (i < initial.Length)
                 {
-                    if(initial[i] == none)
+                    int j = 0;
+                    result += "(";
+                    while (j < 8)
                     {
-                        if (j < 7)
+                        if (initial[i] == ' ')
                         {
-                            result += " ";
-                        }                        
-                        j++;
-                        i++;
+                            if (j < 7)
+                                result += " ";
+                            j++;
+                            i++;
+                        }
+                        else
+                        {
+                            result += initial[i];
+                            i++;
+                        }
                     }
-                    else
-                    {
-                        result += initial[i];
-                        i++;
-                    }
+                    result += ")";
+                    if (i != initial.Length)
+                        result += " ";
                 }
-                result += ")";
-                if (i != initial.Length)
-                    result += " ";
+                return result += ")";
             }
-            result += ")";
-            return result;
         }
     }
 
     static void Main(string[] args)
     {
-        HeterothermicDB db = new HeterothermicDB();
-        db.input_name = "a.txt";
-        db.output_name = "b.txt";
-        db.Read_file("in");
-        db.Write_file(db.Data_com());
+        HeterothermicDB db = new HeterothermicDB
+        {
+            input_name = "a.txt",
+            output_name = "b.txt"
+        };
+        db.Read_file();
+        db.Write_file(db.Data_com);
     }
 }
