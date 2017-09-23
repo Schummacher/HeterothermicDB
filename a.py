@@ -12,12 +12,16 @@ def find():
 def change():
     os.system("file_change.exe")
 
+def delete():
+    os.system("sbcl --script delete.lisp")
+
 def select_form():
     print()
     print("1: Insert")
     print("2: Read")
     print("3: Find")
     print("4: Change")
+    print("5: Delete")
     print("q: Quit")
 
 def sel():
@@ -30,6 +34,8 @@ def sel():
         find()
     elif i == "4":
         change()
+    elif i == "5":
+        delete()
     elif i == 'q':
         return
     print()

@@ -95,4 +95,4 @@
 
 (load-db "a.sdb")
 ;(print (sellect (select-read)))
-(print (sellect (parse-integer (my-read "~&1:find with times~&2:Find for title name~&3:Find for artist name~&"))))
+(print (sellect (parse-integer (my-read "~&1: Find with times~&2: Find for title name~&3: Find for artist name~&"))))
