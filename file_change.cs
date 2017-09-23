@@ -7,15 +7,26 @@ using System.IO;
 
 class Program
 {
-    class ChangeFile
+    class HeterothermicDB
     {
         private string file_data_in;
         private string file_data_out;
 
-        public void Read_file(string name)
+        public string input_name;
+        public string output_name;
+
+        public void Read_file(string io)
         {
-            file_data_in = File.ReadAllText(name);
-            file_data_out = file_data_in;
+            if (string.Equals(io, "in"))
+            {
+                file_data_in = File.ReadAllText(input_name);
+                file_data_out = file_data_in;
+            }
+            else
+            {
+                file_data_in = File.ReadAllText(output_name);
+                file_data_out = file_data_in;
+            }
         }
 
         public void Print_file(string io)
@@ -29,14 +40,6 @@ class Program
         public void Write_file(string data)
         {
             File.WriteAllText("b.txt", data);
-        }
-
-        public void Ccc()
-        {
-            for(int i = 0; i < file_data_in.Length; i++)
-            {
-                Console.WriteLine(file_data_in[i]);
-            }
         }
 
         public string Data_com()
@@ -78,8 +81,10 @@ class Program
 
     static void Main(string[] args)
     {
-        ChangeFile s = new ChangeFile();
-        s.Read_file("a.txt");
-        s.Write_file(s.Data_com());
+        HeterothermicDB db = new HeterothermicDB();
+        db.input_name = "a.txt";
+        db.output_name = "b.txt";
+        db.Read_file("in");
+        db.Write_file(db.Data_com());
     }
 }
